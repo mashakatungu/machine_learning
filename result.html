@@ -1,0 +1,119 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e3f2fd;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: black;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #1976d2;
+            margin-bottom: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin-top: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            display: none; /* Initially hide the image until it's uploaded */
+        }
+
+        img.show {
+            display: block; /* Show the image once it's uploaded */
+        }
+
+        img:hover {
+            transform: scale(1.05);
+        }
+
+        h3 {
+            color: #1976d2;
+            font-size: 22px;
+            margin-top: 30px;
+        }
+
+        .solution {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 18px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 40px;
+            background-color: #1976d2;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #1565c0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Prediction Result</h1>
+
+        <!-- Displaying the uploaded image -->
+        <img id="uploadedImage" src="{{ url_for('static', filename=image_url) }}" alt="Uploaded Image">
+
+        <!-- Disease prediction result -->
+        <h3>Disease Prediction: {{ result['name'] }}</h3>
+
+        <!-- Display solution for the predicted disease -->
+        <div class="solution">
+            <p><strong>Solution:</strong> {{ result['solution'] }}</p>
+        </div>
+
+        <!-- Button to go back to upload page -->
+        <a href="{{ url_for('index') }}">Go Back</a>
+    </div>
+
+    <footer>
+        <p></p>
+    </footer>
+
+    <script>
+        // JavaScript to display the uploaded image
+        window.onload = function() {
+            const uploadedImage = document.getElementById('uploadedImage');
+            uploadedImage.classList.add('show');
+        };
+    </script>
+</body>
+</html>
